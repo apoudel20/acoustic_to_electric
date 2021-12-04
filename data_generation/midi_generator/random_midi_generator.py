@@ -1,9 +1,9 @@
 from midiutil import MIDIFile
 # from mido import MidiFile, open_output
-from random import randint, random
+from random import choices,randint, random
 
 major_scale_notes  = [60, 62, 64, 65, 67, 69, 71, 72]  # MIDI note number
-degrees = [randint(60,80) for x in range(100)]
+degrees = choices(major_scale_notes, k=100)
 
 track    = 0
 channel  = 0
@@ -12,21 +12,22 @@ duration = 1    # In beats
 tempo    = 200   # In BPM
 volume   = 100  # 0-127, as per the MIDI standard
 
-MyMIDI = MIDIFile(1)  # One track, defaults to format 1 (tempo track is created
+
+for file_num in range(30):
+    track_midi_file = "../generated_midi/test/track"
+
+    MyMIDI = MIDIFile(1)  # One track, defaults to format 1 (tempo track is created
                       # automatically)
-MyMIDI.addTempo(track, time, tempo)
+    MyMIDI.addTempo(track, time, tempo)
+    shift = 0
+    for pitch in degrees:
+        duration = 1 + .125*randint(0,8)
+        volume = randint(70,127)
+        MyMIDI.addNote(track, channel, pitch, time + shift, duration, volume)
+        shift += duration
 
-random_midi_file = "../generated_midi/random.mid"
-
-shift = 0
-for pitch in degrees:
-    duration = 1 + 2*random()
-    volume = randint(70,100)
-    MyMIDI.addNote(track, channel, pitch, time + shift, duration, volume)
-    shift += duration
-
-with open(random_midi_file, "wb") as output_file:
-    MyMIDI.writeFile(output_file)
+    with open(track_midi_file + "_" + str(file_num).zfill(2) + ".mid", "wb") as output_file:
+        MyMIDI.writeFile(output_file)
 
 # midi_file = MidiFile(random_midi_file)
 # outport = open_output()

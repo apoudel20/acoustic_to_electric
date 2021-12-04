@@ -1,0 +1,3 @@
+python random_midi_generator.py
+cd ..\fluidsynth_binaries
+for /F %%i in ('dir /b ..\generated_midi\train\') do fluidsynth.exe -F "..\synthesized_wav\acoustic_%%i.wav" "..\generated_midi\train\%%i" "..\soundfonts\Nylon Guitar.sf2" && fluidsynth.exe -F "..\synthesized_wav\electric_%%i.wav" "..\generated_midi\train\%%i" "..\soundfonts\Heavy.sf2"

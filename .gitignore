@@ -1,0 +1,4 @@
+./data_generation/synthesized_wav
+./data_generation/inverted_spectrogram_tests
+./data_generation/generated_midi
+*~
