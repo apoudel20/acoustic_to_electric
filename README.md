@@ -24,4 +24,4 @@ The provided batch script `data_generation/midi_generation.midi_to_electric_acou
 
 ## Model
 
-Currently, the model is not public since it's part of an academic project. Please reach out to me on [LinkedIn](https://www.linkedin.com/in/aayushpoudel/) to request access. 
+The Jupyter Notebook has the complete implementation of the VAE.
